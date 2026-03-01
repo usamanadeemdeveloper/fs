@@ -1345,15 +1345,7 @@ runs these steps:
   : await |stream| . {{FileSystemWritableFileStream/write()|write}}({
       {{WriteParams/type}}: "{{WriteCommandType/truncate}}",
       {{WriteParams/size}}: |size| })
-  :: Resizes the file associated with |stream| to be |size| bytes long. If |size| is larger than
-     the current file size this pads the file with null bytes, otherwise it truncates the file.
-
-     The file cursor is updated when {{FileSystemWritableFileStream/truncate()|truncate}} is called.
-     If the cursor is smaller than |size|, it remains unchanged. If the cursor is larger than
-     |size|, it is set to |size| to ensure that subsequent writes do not error.
-
-     No changes are written to the actual file until on disk until the stream has been closed.
-     Changes are typically written to a temporary file instead.
+  :: Equivalent to calling {{FileSystemWritableFileStream/truncate()|truncate}}(|size|).
 </div>
 
 <div algorithm>
@@ -1397,7 +1389,7 @@ The <dfn method for=FileSystemWritableFileStream>seek(|position|)</dfn> method s
      If the cursor is smaller than |size|, it remains unchanged. If the cursor is larger than
      |size|, it is set to |size| to ensure that subsequent writes do not error.
 
-     No changes are written to the actual file until on disk until the stream has been closed.
+     No changes are written to the actual file on disk until the stream has been closed.
      Changes are typically written to a temporary file instead.
 </div>
 
